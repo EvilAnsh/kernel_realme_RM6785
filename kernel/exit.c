@@ -860,6 +860,7 @@ static void check_stack_usage(void)
 static inline void check_stack_usage(void) {}
 #endif
 
+
 #ifdef OPLUS_BUG_STABILITY
 //Haoran.Zhang@ANDROID.STABILITY.1052210, 2016/05/24, Add for debug critical svc crash
 static bool is_zygote_process(struct task_struct *t)
@@ -893,6 +894,8 @@ static bool is_critial_process(struct task_struct *t) {
 
 }
 #endif /*OPLUS_BUG_STABILITY*/
+
+
 #ifndef CONFIG_PROFILING
 static BLOCKING_NOTIFIER_HEAD(task_exit_notifier);
 
