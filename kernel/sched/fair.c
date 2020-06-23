@@ -84,8 +84,9 @@ extern unsigned int walt_ravg_window;
  *
  * (default: 5ms * (1 + ilog(ncpus)), units: nanoseconds)
  */
-unsigned int sysctl_sched_latency			= 5000000ULL;
-unsigned int normalized_sysctl_sched_latency		= 5000000ULL;
+unsigned int sysctl_sched_latency			= 10000000ULL;
+unsigned int normalized_sysctl_sched_latency		= 10000000ULL;
+
 
 /*
  * Enable/disable honoring sync flag in energy-aware wakeups.
@@ -113,20 +114,33 @@ unsigned int sysctl_sched_cstate_aware = 1;
  *
  * (default SCHED_TUNABLESCALING_LOG = *(1+ilog(ncpus))
  */
+<<<<<<< HEAD
 enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_LINEAR;
+=======
+enum sched_tunable_scaling sysctl_sched_tunable_scaling = SCHED_TUNABLESCALING_NONE;
+>>>>>>> 01dbb33c7df2... sched: Ideally use 10ms scheduling periods
 
 /*
  * Minimal preemption granularity for CPU-bound tasks:
  *
  * (default: 0.75 msec * (1 + ilog(ncpus)), units: nanoseconds)
  */
+<<<<<<< HEAD
 unsigned int sysctl_sched_min_granularity		= 500000ULL;
 unsigned int normalized_sysctl_sched_min_granularity	= 500000ULL;
+=======
+unsigned int sysctl_sched_min_granularity		= 1000000ULL;
+unsigned int normalized_sysctl_sched_min_granularity	= 1000000ULL;
+>>>>>>> 01dbb33c7df2... sched: Ideally use 10ms scheduling periods
 
 /*
  * This value is kept at sysctl_sched_latency/sysctl_sched_min_granularity
  */
+<<<<<<< HEAD
 static unsigned int sched_nr_latency = 6;
+=======
+static unsigned int sched_nr_latency = 10;
+>>>>>>> 01dbb33c7df2... sched: Ideally use 10ms scheduling periods
 
 /*
  * After fork, child runs first. If set to 0 (default) then
