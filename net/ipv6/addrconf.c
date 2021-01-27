@@ -3348,6 +3348,10 @@ static void addrconf_dev_config(struct net_device *dev)
 	if (dev->type == ARPHRD_RAWIP)
 		return;
 
+	/* mobile device doesn't need auto-linklocal addr */
+	if (dev->type == ARPHRD_RAWIP)
+		return;
+
 	/* this device type has no EUI support */
 	if (dev->type == ARPHRD_NONE &&
 	    idev->cnf.addr_gen_mode == IN6_ADDR_GEN_MODE_EUI64)
