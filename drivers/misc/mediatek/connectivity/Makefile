@@ -75,6 +75,9 @@ endif
     obj-y += fmradio/
     obj-y += gps/
 
+# FMRadio
+obj-$(CONFIG_MTK_FMRADIO) += fmradio/
+
 # Otherwise we were called directly from the command line;
 # invoke the kernel build system.
 else
