@@ -47,7 +47,7 @@ endif
 
 
     # Do build-in for Makefile checking
-    # export CONFIG_WLAN_DRV_BUILD_IN=y
+    export CONFIG_WLAN_DRV_BUILD_IN=y
 
     ifeq ($(CONFIG_WLAN_DRV_BUILD_IN),y)
 
@@ -61,7 +61,9 @@ endif
         export WIFI_ECO_VER=1
         export ADAPTOR_OPTS=$(MTK_COMBO_CHIP)
 
-        # Do build-in for xxx.c checking
+
+
+    # Do build-in for xxx.c checking
         subdir-ccflags-y += -D MTK_WCN_REMOVE_KERNEL_MODULE
         subdir-ccflags-y += -D MTK_WCN_BUILT_IN_DRIVER
         obj-y += common/
@@ -72,7 +74,6 @@ endif
 
     # Do build-in for rest of connectivity drivers
     obj-y += bt/mt66xx/legacy/
-    obj-y += fmradio/
     obj-y += gps/
 
 # FMRadio
