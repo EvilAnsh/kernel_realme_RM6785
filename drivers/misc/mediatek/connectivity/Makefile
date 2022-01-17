@@ -76,7 +76,11 @@ endif
     obj-y += gps/
 
 # FMRadio
-obj-$(CONFIG_MTK_FMRADIO) += fmradio/
+ifeq ($(CONFIG_MTK_FMRADIO),y)
+    export CFG_FM_CHIP_ID=6785
+    export CFG_FM_CHIP=mt6631
+    obj-y += fmradio/
+endif
 
 # Otherwise we were called directly from the command line;
 # invoke the kernel build system.
