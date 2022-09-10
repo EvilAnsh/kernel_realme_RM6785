@@ -100,13 +100,13 @@ enum {
 
 /**
  * Default period for DVFS sampling (can be overridden by platform header)
- */
-#ifndef DEFAULT_PM_DVFS_PERIOD
-#define DEFAULT_PM_DVFS_PERIOD 100 /* 100ms */
-#endif
+*/
+
+
+
 
 /**
- * Power Management poweroff tick granuality. This is in nanoseconds to
+nagement poweroff tick granuality. This is in nanoseconds to
  * allow HR timer support (can be overridden by platform header).
  *
  * On each scheduling tick, the power manager core may decide to:
