@@ -16,12 +16,14 @@
 #if defined(CONFIG_AUTO_KPROFILES_MSM_DRM) || defined(CONFIG_AUTO_KPROFILES_FB)
 static bool screen_on = true;
 #endif
+<<<<<<< HEAD
 static unsigned int mode = 0;
 
 static unsigned int override_mode;
 static bool override = false;
-
-static bool auto_kprofiles = true;
+static unsigned int mode = 2;
+static unsigned int rollback_mode;
+static bool auto_kprofiles = false;
 module_param(auto_kprofiles, bool, 0664);
 module_param(mode, uint, 0664);
 
