@@ -73,7 +73,7 @@
  * reserved area operations
  */
 #include <linux/resmap_account.h>
-
+#endif
 /*
  * The default value should be high enough to not crash a system that randomly
  * crashes its kernel from time to time, but low enough to at least not permit
