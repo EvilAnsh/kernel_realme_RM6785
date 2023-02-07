@@ -48,7 +48,7 @@ bool kthread_is_per_cpu(struct task_struct *k);
  *
  * Same as kthread_run(), but with the kthread bound to performance CPUs.
  */
-#define kthread_run_perf_critical(threadfn, data, namefmt, ...)		   \
+/**#define kthread_run_perf_critical(threadfn, data, namefmt, ...)		   \
 ({									   \
 	struct task_struct *__k						   \
 		= kthread_create(threadfn, data, namefmt, ## __VA_ARGS__); \
@@ -59,7 +59,7 @@ bool kthread_is_per_cpu(struct task_struct *k);
 	}								   \
 	__k;								   \
 })
-
+**/
 #define kthread_run(threadfn, data, namefmt, ...)			   \
 ({									   \
 	struct task_struct *__k						   \

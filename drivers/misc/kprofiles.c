@@ -16,8 +16,8 @@
 #if defined(CONFIG_AUTO_KPROFILES_MSM_DRM) || defined(CONFIG_AUTO_KPROFILES_FB)
 static bool screen_on = true;
 #endif
-<<<<<<< HEAD
-static unsigned int mode = 0;
+
+//static unsigned int mode = 0;
 
 static unsigned int override_mode;
 static bool override = false;
