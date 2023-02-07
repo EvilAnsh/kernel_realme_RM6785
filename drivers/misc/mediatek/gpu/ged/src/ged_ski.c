@@ -95,7 +95,7 @@ static ssize_t gpu_max_clock_show(struct kobject *kobj,
 	max_clock = (max_clock_custom < max_clock) ?
 			max_clock_custom : max_clock;
 
-	return scnprintf(buf, PAGE_SIZE, "%u\n", max_clock);
+	return scnprintf(buf, PAGE_SIZE, "%u\n", max_clock / 1000);
 }
 
 static ssize_t gpu_max_clock_store(struct kobject *kobj,
