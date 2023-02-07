@@ -242,7 +242,7 @@ static struct GED_KPI_MEOW_DVFS_FREQ_PRED *g_psMEOW;
 
 /* static int display_fps = GED_KPI_MAX_FPS; */
 static int is_game_control_frame_rate;
-static int target_fps_4_main_head = 60;
+static int target_fps_4_main_head = 70;
 static long long vsync_period = GED_KPI_SEC_DIVIDER / GED_KPI_MAX_FPS;
 static GED_LOG_BUF_HANDLE ghLogBuf_KPI;
 static struct workqueue_struct *g_psWorkQueue;
@@ -258,7 +258,7 @@ static unsigned int gx_dfps; /* variable to fix FPS*/
 static unsigned int gx_frc_mode; /* variable to fix FRC mode*/
 
 #ifdef GED_KPI_CPU_BOOST
-static unsigned int enable_cpu_boost = 1;
+static unsigned int enable_cpu_boost = -1;
 #endif /* GED_KPI_CPU_BOOST */
 static unsigned int enable_gpu_boost = 1;
 static unsigned int is_GED_KPI_enabled = 1;
@@ -296,10 +296,10 @@ static unsigned long long g_CRemTimeAccu; /*g_cpu_remained_time_accum*/
 static unsigned long long g_gpu_freq_accum;
 static unsigned int g_frame_count;
 
-static int gx_game_mode;
+static int gx_game_mode=0;
 static int gx_boost_on=-1;
 #ifdef GED_KPI_CPU_BOOST
-static int gx_force_cpu_boost;
+static int gx_force_cpu_boost=1;
 static int gx_top_app_pid;
 static int enable_game_self_frc_detect;
 #endif /* GED_KPI_CPU_BOOST */
@@ -317,8 +317,8 @@ static int boost_accum_cpu;
 static long target_t_cpu_remained = 16000000;
 /* static long target_t_cpu_remained_min = 8300000; */
 /* default 0.5 vsync period */
-static int cpu_boost_policy;
-static int boost_extra;
+static int cpu_boost_policy=-1;
+static int boost_extra=1;
 static int boost_amp;
 static int deboost_reduce;
 static int boost_upper_bound = 100;
@@ -582,7 +582,7 @@ static void ged_kpi_PushCurFps_and_DetectAppSelfFrc(int fps)
 				GED_LOGE("[AFRC] fps_grp: %d, %d, %d\n",
 					fps_grp[0], fps_grp[1], fps_grp[2]);
 #endif /* GED_KPI_DEBUG */
-				if (reset == 0 && fps_grp[0] < 60) {
+				if (reset == 0 && fps_grp[0] < 70) {
 					target_fps_4_main_head = fps_grp[0];
 					is_game_control_frame_rate = 1;
 				} else {
@@ -595,7 +595,7 @@ static void ged_kpi_PushCurFps_and_DetectAppSelfFrc(int fps)
 		cur_fps_idx++;
 		cur_fps_idx %= G_K_G_S_FRC_D_M_W_S;
 	} else {
-		if (target_fps_4_main_head == 60 ||
+		if (target_fps_4_main_head == 70 ||
 			enable_game_self_frc_detect == 0)
 			is_game_control_frame_rate = 0;
 	}
@@ -626,7 +626,7 @@ static inline void ged_kpi_clean_kpi_info(void)
 void ged_kpi_main_head_reset(void)
 {
 #ifdef GED_KPI_CPU_BOOST
-	ged_kpi_frc_detection_main_head_reset(60);
+	ged_kpi_frc_detection_main_head_reset(70);
 	ged_kpi_check_fallback_main_head_reset();
 #endif /* GED_KPI_CPU_BOOST */
 }
