@@ -49,17 +49,15 @@ ifneq ($(CONFIG_MTK_FMRADIO),)
 MODULE_NAME := fmradio_drv
 obj-y += $(MODULE_NAME).o
 
-ifeq ($(CFG_FM_CHIP),)
-    FM_CHIP := mt6631_6635
+    FM_CHIP := mt6631
 
-    ccflags-y += -I$(src)/chips/mt6631/inc -I$(src)/chips/mt6635/inc
+    ccflags-y += -I$(src)/chips/mt6631/inc
 
     $(FM_CHIP)-objs += chips/mt6631/pub/mt6631_fm_rds.o
-    $(FM_CHIP)-objs += chips/mt6635/pub/mt6635_fm_rds.o
     $(FM_CHIP)-objs += chips/mt6631/pub/mt6631_fm_lib.o
-    $(FM_CHIP)-objs += chips/mt6635/pub/mt6635_fm_lib.o
 
-else
+
+
 
 ifeq ($(CONFIG_MTK_FM_CHIP),)
     $(error CONFIG_MTK_FM_CHIP not defined)
