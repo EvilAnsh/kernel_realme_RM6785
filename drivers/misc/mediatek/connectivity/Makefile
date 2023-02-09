@@ -81,9 +81,6 @@ ifeq ($(CONFIG_MTK_FMRADIO),y)
     export CFG_FM_CHIP_ID=6785
     export CFG_FM_CHIP=mt6631
     #obj-y += fmradio/ # The FM module built in this way does not work properly and does not create /dev/fm
-    ccflags-y += -I$(src)/fmradio/chips/mt6631/inc
-    $(FM_CHIP)-objs += fmradio/chips/mt6631/pub/mt6631_fm_rds.o
-    $(FM_CHIP)-objs += fmradio/chips/mt6631/pub/mt6631_fm_lib.o
 
 endif
 
