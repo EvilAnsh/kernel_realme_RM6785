@@ -76,13 +76,8 @@ endif
     obj-y += bt/mt66xx/legacy/
     obj-y += gps/
 
-# FMRadio
-ifeq ($(CONFIG_MTK_FMRADIO),y)
-    export CFG_FM_CHIP_ID=6785
-    export CFG_FM_CHIP=mt6631
     #obj-y += fmradio/ # The FM module built in this way does not work properly and does not create /dev/fm
 
-endif
 
 # Otherwise we were called directly from the command line;
 # invoke the kernel build system.
