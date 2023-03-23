@@ -268,6 +268,7 @@ int kbase_device_init(struct kbase_device *kbdev)
 			break;
 		}
 	}
+/*<<<<<<< HEAD
 
 	kthread_init_worker(&kbdev->job_done_worker);
 	kbdev->job_done_worker_thread = kthread_run(kthread_worker_fn,
@@ -291,5 +292,8 @@ int kbase_device_init(struct kbase_device *kbdev)
 		err = -ENOMEM;
 	}
 
+=======
+>>>>>>> parent of 797176320398... drivers: mtk-gpu: convert event and jd workqueues to per-device kthreads
+*/
 	return err;
 }
