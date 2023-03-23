@@ -11,7 +11,18 @@ export KBUILD_BUILD_HOST=RM6785•DEV
 export KBUILD_BUILD_USER="AbzRaider"
 git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang.git clang
 
-[ -d "out" ] && rm -rf AnyKernel && rm -rf out || mkdir -p out
+if ! [ -d "out" ]; then
+	echo "Kernel OUT Directory Not Found . Making Again"
+mkdir out
+
+else
+
+	
+	sleep 5
+	echo "out directory already exists , Making Dirty Build !! "
+	echo "If you want to clean Build , just rm -rf out"
+	
+fi
 
 make O=out ARCH=arm64 RM6785_defconfig
 
@@ -32,6 +43,9 @@ make -j$(nproc --all) O=out \
 
 function zupload()
 {
+	if  [ -d "AnyKernel" ]; then
+	rm -rf AnyKernel
+fi
 git clone --depth=1 https://github.com/Johny8988/AnyKernel3.git AnyKernel
 cp out/arch/arm64/boot/Image.gz-dtb AnyKernel
 cd AnyKernel
