@@ -4296,29 +4296,6 @@ void kbase_jit_report_update_pressure(struct kbase_context *kctx,
 }
 #endif /* MALI_JIT_PRESSURE_LIMIT_BASE */
 
-
-
-bool kbase_has_exec_va_zone(struct kbase_context *kctx)
-{
-	bool has_exec_va_zone;
-
-	kbase_gpu_vm_lock(kctx);
-	has_exec_va_zone = (kctx->exec_va_start != U64_MAX);
-	kbase_gpu_vm_unlock(kctx);
-
-	return has_exec_va_zone;
-}
-
-static inline void unpin_user_buf_page(struct page *page)
-{
-#if KERNEL_VERSION(5, 9, 0) > LINUX_VERSION_CODE
-	put_page(page);
-#else
-	unpin_user_page(page);
-#endif
-}
-
-
 int kbase_jd_user_buf_pin_pages(struct kbase_context *kctx,
 		struct kbase_va_region *reg)
 {
@@ -4379,7 +4356,7 @@ KERNEL_VERSION(4, 5, 0) > LINUX_VERSION_CODE
 
 	if (pinned_pages != alloc->imported.user_buf.nr_pages) {
 		for (i = 0; i < pinned_pages; i++)
-			unpin_user_buf_page(pages[i]);
+			put_page(pages[i]);
 		return -ENOMEM;
 	}
 
@@ -4455,7 +4432,7 @@ unwind:
 	}
 
 	while (++i < pinned_pages) {
-		unpin_user_buf_page(pages[i]);
+		put_page(pages[i]);
 		pages[i] = NULL;
 	}
 
@@ -4484,7 +4461,7 @@ static void kbase_jd_user_buf_unmap(struct kbase_context *kctx,
 				DMA_BIDIRECTIONAL);
 		if (writeable)
 			set_page_dirty_lock(pages[i]);
-		unpin_user_buf_page(pages[i]);
+		put_page(pages[i]);
 		pages[i] = NULL;
 
 		size -= local_size;
