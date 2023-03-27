@@ -9,7 +9,7 @@ ccache -M 100G
 export ARCH=arm64
 export KBUILD_BUILD_HOST=RM6785•DEV
 export KBUILD_BUILD_USER="AbzRaider"
-git clone --depth=1 https://gitlab.com/Panchajanya1999/azure-clang.git clang
+git clone --depth=1 https://gitlab.com/GhostMaster69-dev/cosmic-clang clang
 
 if ! [ -d "out" ]; then
 	echo "Kernel OUT Directory Not Found . Making Again"
